@@ -44,7 +44,7 @@ const ResetPassword = ({ name, link, expireTime }: ResetPasswordProps) => (
 
           <Section className="mb-[24px]">
             <Text className="text-[16px] text-gray-700 m-0 leading-[24px]">
-              Someone requested a password reset for your account. Click the button below to set a
+              Someone requested a password reset for your Task Manager account. Click the button below to set a
               new password.
             </Text>
           </Section>

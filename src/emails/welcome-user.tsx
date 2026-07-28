@@ -14,11 +14,11 @@ import {
   toPlainText,
 } from "react-email";
 
-type WelcomeMessageProps = {
+type WelcomeUserProps = {
   name: string;
 };
 
-const WelcomeMessage = ({ name }: WelcomeMessageProps) => (
+const WelcomeUser = ({ name }: WelcomeUserProps) => (
   <Html lang="en" dir="ltr">
     <Tailwind
       config={{
@@ -26,12 +26,12 @@ const WelcomeMessage = ({ name }: WelcomeMessageProps) => (
       }}
     >
       <Head />
-      <Preview>Welcome to BetterAuth Organization!</Preview>
+      <Preview>Welcome to Task Manager!</Preview>
       <Body className="bg-white font-sans py-[40px]">
         <Container className="bg-gray-100 mx-auto p-[24px] w-full rounded-[12px]">
           <Section className="mb-[24px]">
             <Heading className="text-[28px] font-bold text-gray-900 m-0">
-              Welcome to BetterAuth Organization!
+              Welcome to Task Manager!
             </Heading>
           </Section>
 
@@ -41,14 +41,11 @@ const WelcomeMessage = ({ name }: WelcomeMessageProps) => (
 
           <Section className="mb-[24px]">
             <Text className="text-[16px] text-gray-700 m-0 leading-[24px]">
-              Thank you for signing up with BetterAuth Organization! We're absolutely thrilled to
-              have you join our growing community of developers and organizations who trust us with
-              their authentication needs.
+              Thank you for signing up with Task Manager! We're thrilled to have you on board.
             </Text>
             <Text className="text-[16px] text-gray-700 m-0 leading-[24px] mt-[16px]">
-              Your account has been successfully created and you're now part of a platform designed
-              to make authentication simple, secure, and reliable. We're committed to providing you
-              with the best possible experience as you explore everything BetterAuth has to offer.
+              Your account has been successfully created. Start organizing your tasks, setting
+              priorities, and getting things done.
             </Text>
           </Section>
 
@@ -56,7 +53,7 @@ const WelcomeMessage = ({ name }: WelcomeMessageProps) => (
             <Text className="text-[16px] text-gray-700 m-0 leading-[24px]">
               Best Regards,
               <br />
-              BAO Team
+              Task Manager Team
             </Text>
           </Section>
         </Container>
@@ -65,13 +62,13 @@ const WelcomeMessage = ({ name }: WelcomeMessageProps) => (
   </Html>
 );
 
-WelcomeMessage.PreviewProps = {
+WelcomeUser.PreviewProps = {
   name: "John Doe",
-} satisfies WelcomeMessageProps;
+} satisfies WelcomeUserProps;
 
-export default WelcomeMessage;
+export default WelcomeUser;
 
-export const welcomeMessageHtml = async (name: string) =>
-  await pretty(await render(<WelcomeMessage name={name} />));
-export const welcomeMessageText = async (name: string) =>
-  toPlainText(await welcomeMessageHtml(name));
+export const welcomeUserHtml = async (name: string) =>
+  await pretty(await render(<WelcomeUser name={name} />));
+export const welcomeUserText = async (name: string) =>
+  toPlainText(await welcomeUserHtml(name));

@@ -1,4 +1,7 @@
 import type { BetterAuthOptions } from "better-auth/minimal";
+
+import * as template from "@/emails/index.js";
+
 import { transporter } from "../transporter.js";
 
 type SendResetPasswordEmailFunction = NonNullable<
@@ -9,14 +12,11 @@ export const sendResetPasswordEmail: SendResetPasswordEmailFunction = async ({
   user: { name, email },
   url,
 }) => {
-  const { resetPasswordHtml, resetPasswordText } = await import(
-    "../../../emails/reset-password.js"
-  );
   void transporter.sendMail({
-    from: "BetterAuth Organization <support@betterauth-org.com",
-    html: await resetPasswordHtml(name, url, "24 hours"),
+    from: "Task Manager",
+    html: await template.resetPasswordHtml(name, url, "24 hours"),
     subject: "Reset your password",
-    text: await resetPasswordText(name, url, "24 hours"),
+    text: await template.resetPasswordText(name, url, "24 hours"),
     to: email,
   });
 };
@@ -28,14 +28,11 @@ export const sendVerificationEmail: SendVerificationEmailFunction = async ({
   user: { name, email },
   url,
 }) => {
-  const { emailVerificationHtml, emailVerificationText } = await import(
-    "../../../emails/email-verification.js"
-  );
   void transporter.sendMail({
-    from: "BetterAuth Organization <support@betterauth-org.com",
-    html: await emailVerificationHtml(name, url, "24 hours"),
+    from: "Task Manager",
+    html: await template.verifyEmailHtml(name, url, "24 hours"),
     subject: "Verify your email",
-    text: await emailVerificationText(name, url, "24 hours"),
+    text: await template.verifyEmailText(name, url, "24 hours"),
     to: email,
   });
 };
@@ -44,14 +41,11 @@ type AfterEmailVerificaton = NonNullable<
   BetterAuthOptions["emailVerification"]
 >["afterEmailVerification"];
 export const sendWelcomeEmail = async (name: string, email: string) => {
-  const { welcomeMessageHtml, welcomeMessageText } = await import(
-    "../../../emails/welcome-message.js"
-  );
   void transporter.sendMail({
-    from: "BetterAuth Organization <support@betterauth-org.com",
-    html: await welcomeMessageHtml(name),
-    subject: "Welcome to BetterAuth Organization!",
-    text: await welcomeMessageText(name),
+    from: "Task Manager",
+    html: await template.welcomeUserHtml(name),
+    subject: "Welcome to Task Manager!",
+    text: await template.welcomeUserText(name),
     to: email,
   });
 };
@@ -67,12 +61,11 @@ export const sendOTPEmail = async ({
   user: { name: string; email: string };
   otp: string;
 }) => {
-  const { otpHtml, otpText } = await import("../../../emails/otp.js");
   await transporter.sendMail({
-    from: "BetterAuth Organization <support@betterauth-org.com",
-    html: await otpHtml(name, otp, "5 minutes"),
+    from: "Task Manager",
+    html: await template.emailOtpHtml(name, otp, "5 minutes"),
     subject: "Your verification code",
-    text: await otpText(name, otp, "5 minutes"),
+    text: await template.emailOtpText(name, otp, "5 minutes"),
     to: email,
   });
 };

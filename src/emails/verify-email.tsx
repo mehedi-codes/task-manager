@@ -15,13 +15,13 @@ import {
   toPlainText,
 } from "react-email";
 
-type EmailVerificationProps = {
+type VerifyEmailProps = {
   name: string;
   link: string;
   expireTime: string;
 };
 
-const EmailVerification = ({ name, link, expireTime }: EmailVerificationProps) => (
+const VerifyEmail = ({ name, link, expireTime }: VerifyEmailProps) => (
   <Html lang="en" dir="ltr">
     <Tailwind
       config={{
@@ -44,8 +44,7 @@ const EmailVerification = ({ name, link, expireTime }: EmailVerificationProps) =
 
           <Section className="mb-[24px]">
             <Text className="text-[16px] text-gray-700 m-0 leading-[24px]">
-              Please click the button below to verify your email address and complete your account
-              setup.
+              Please click the button below to verify your email address and complete your Task Manager account setup.
             </Text>
           </Section>
 
@@ -75,15 +74,15 @@ const EmailVerification = ({ name, link, expireTime }: EmailVerificationProps) =
   </Html>
 );
 
-EmailVerification.PreviewProps = {
+VerifyEmail.PreviewProps = {
   expireTime: "24 hours",
   link: "https://yourapp.com/verify-email?token=abc123xyz789",
   name: "John Doe",
-} satisfies EmailVerificationProps;
+} satisfies VerifyEmailProps;
 
-export default EmailVerification;
+export default VerifyEmail;
 
-export const emailVerificationHtml = async (name: string, link: string, expireTime: string) =>
-  await pretty(await render(<EmailVerification name={name} link={link} expireTime={expireTime} />));
-export const emailVerificationText = async (name: string, link: string, expireTime: string) =>
-  toPlainText(await emailVerificationHtml(name, link, expireTime));
+export const verifyEmailHtml = async (name: string, link: string, expireTime: string) =>
+  await pretty(await render(<VerifyEmail name={name} link={link} expireTime={expireTime} />));
+export const verifyEmailText = async (name: string, link: string, expireTime: string) =>
+  toPlainText(await verifyEmailHtml(name, link, expireTime));

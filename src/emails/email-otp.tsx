@@ -14,13 +14,13 @@ import {
   toPlainText,
 } from "react-email";
 
-type OtpProps = {
+type EmailOtpProps = {
   name: string;
   otp: string;
   expireTime: string;
 };
 
-const Otp = ({ name, otp, expireTime }: OtpProps) => (
+const EmailOtp = ({ name, otp, expireTime }: EmailOtpProps) => (
   <Html lang="en" dir="ltr">
     <Tailwind
       config={{
@@ -43,7 +43,7 @@ const Otp = ({ name, otp, expireTime }: OtpProps) => (
 
           <Section className="mb-[24px]">
             <Text className="text-[16px] text-gray-700 m-0 leading-[24px]">
-              Use the following code to complete your sign-in:
+              Use the following code to complete your sign-in to Task Manager:
             </Text>
           </Section>
 
@@ -63,15 +63,15 @@ const Otp = ({ name, otp, expireTime }: OtpProps) => (
   </Html>
 );
 
-Otp.PreviewProps = {
+EmailOtp.PreviewProps = {
   expireTime: "5 minutes",
   name: "John Doe",
   otp: "123456",
-} satisfies OtpProps;
+} satisfies EmailOtpProps;
 
-export default Otp;
+export default EmailOtp;
 
-export const otpHtml = async (name: string, otp: string, expireTime: string) =>
-  await pretty(await render(<Otp name={name} otp={otp} expireTime={expireTime} />));
-export const otpText = async (name: string, otp: string, expireTime: string) =>
-  toPlainText(await otpHtml(name, otp, expireTime));
+export const emailOtpHtml = async (name: string, otp: string, expireTime: string) =>
+  await pretty(await render(<EmailOtp name={name} otp={otp} expireTime={expireTime} />));
+export const emailOtpText = async (name: string, otp: string, expireTime: string) =>
+  toPlainText(await emailOtpHtml(name, otp, expireTime));
