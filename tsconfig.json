@@ -5,9 +5,9 @@
     "moduleResolution": "NodeNext",
     "lib": ["ES2024", "DOM"],
     "strict": true,
-    "types": ["bun-types"],
     "verbatimModuleSyntax": true,
     "skipLibCheck": true,
+    "jsx": "react-jsx",
     "rootDir": "./src",
     "outDir": "./dist",
     "paths": {

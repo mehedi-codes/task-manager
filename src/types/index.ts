@@ -1,14 +1,12 @@
-import type { OpenAPIHono } from "@hono/zod-openapi";
+import type { NeonHttpDatabase } from "drizzle-orm/neon-http";
 import type { PinoLogger as HonoPinoLogger } from "hono-pino";
-import type { DB } from "@/db/index.js";
-
-export type AppVariables = {
-	logger: HonoPinoLogger;
-	db: DB;
-};
+import type { BetterAuth } from "@/config/auth.js";
 
 export type AppBindings = {
-	Variables: AppVariables;
+  Variables: {
+    logger: HonoPinoLogger;
+    db: NeonHttpDatabase;
+    user: BetterAuth["user"] | null;
+    session: BetterAuth["session"] | null;
+  };
 };
-
-export type AppOpenAPI = OpenAPIHono<AppBindings>;

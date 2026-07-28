@@ -1,0 +1,106 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on",
+        "useSortedKeys": {
+          "level": "on",
+          "options": {
+            "groupByNesting": true
+          }
+        }
+      }
+    }
+  },
+  "files": {
+    "maxSize": 5242880 // 5MB
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": true,
+    "indentStyle": "space",
+    "lineWidth": 100
+  },
+  "json": {
+    "formatter": {
+      "lineWidth": 100
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended",
+      "complexity": {
+        "noImplicitCoercions": "error", // forbid `!!foo`, allow `Boolean(foo)`
+        "noVoid": "off", // void is useful in some cases e.g. `useEffect` callbacks
+        "useSimplifiedLogicExpression": "off", // the rule is cool but it gets agents stuck
+        "noUselessUndefined": "off" // we want explicit undefined return values
+      },
+      "correctness": {
+        "noUnusedImports": "off", // allow unused imports during development
+        "noUnusedVariables": "error"
+      },
+      "nursery": {
+        "noFloatingPromises": "error" // floating promises can lead to bugs
+      },
+      "performance": {
+        "noBarrelFile": "off", // barrel exports lead to cleaner imports
+        "noDelete": "off", // disabled due to https://github.com/biomejs/biome/issues/4093
+        "noNamespaceImport": "off" // namespaces are cool
+      },
+      "style": {
+        "noEnum": "off", // enums are useful in some cases e.g. UI states
+        "noNamespace": "off", // namespaces are cool
+        "useBlockStatements": "off", // turned off because it gets AIs stuck
+        "useDefaultSwitchClause": "off", // already handled by TypeScript
+        "useTemplate": "off", // allow string concatenation using `+`
+        "useConsistentTypeDefinitions": {
+          "level": "warn",
+          "options": {
+            "style": "type"
+          }
+        },
+        "useFilenamingConvention": {
+          "level": "error",
+          "options": {
+            "filenameCases": ["kebab-case", "camelCase", "PascalCase", "export"]
+          }
+        },
+        // disabled due to https://github.com/biomejs/biome/issues/8450
+        "useImportType": {
+          "level": "warn",
+          "options": {
+            "style": "separatedType"
+          }
+        }
+      }
+    }
+  },
+  "overrides": [
+    {
+      // Disabling sorted keys because ordering is often important in JSON files
+      "includes": ["**/*.{json,json5,jsonc}"],
+      "assist": {
+        "actions": {
+          "source": {
+            "useSortedKeys": "off"
+          }
+        }
+      },
+      // Needed to override ultracite
+      "json": {
+        "parser": {
+          "allowComments": true,
+          "allowTrailingCommas": true
+        }
+      }
+    }
+  ],
+  "vcs": {
+    "clientKind": "git",
+    "enabled": true,
+    "useIgnoreFile": true
+  }
+}

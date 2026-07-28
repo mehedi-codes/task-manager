@@ -37,6 +37,7 @@ Task Manager REST API. Built with:
 | `implement` | Implement features from a spec or set of tickets. |
 | `research` | Investigate questions against high-trust primary sources, save findings. |
 | `ubiquitous-language` | Extract DDD-style domain vocabulary, flag ambiguities, propose canonical terms. |
+| `biomejs` | Configuring and using BiomeJS for linting/formatting JS/TS/JSON/CSS, migrating from ESLint/Prettier, monorepo config, pre-commit hooks, CI integration. |
 
 ## Conventions
 
