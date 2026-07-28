@@ -5,6 +5,7 @@ import {
   Heading,
   Html,
   Preview,
+  pixelBasedPreset,
   pretty,
   render,
   Section,
@@ -21,7 +22,11 @@ type OtpProps = {
 
 const Otp = ({ name, otp, expireTime }: OtpProps) => (
   <Html lang="en" dir="ltr">
-    <Tailwind>
+    <Tailwind
+      config={{
+        presets: [pixelBasedPreset],
+      }}
+    >
       <Head />
       <Preview>Your verification code: {otp}</Preview>
       <Body className="bg-white font-sans py-[40px]">
@@ -62,7 +67,9 @@ Otp.PreviewProps = {
   expireTime: "5 minutes",
   name: "John Doe",
   otp: "123456",
-};
+} satisfies OtpProps;
+
+export default Otp;
 
 export const otpHtml = async (name: string, otp: string, expireTime: string) =>
   await pretty(await render(<Otp name={name} otp={otp} expireTime={expireTime} />));

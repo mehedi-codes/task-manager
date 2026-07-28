@@ -10,7 +10,7 @@ export const sendResetPasswordEmail: SendResetPasswordEmailFunction = async ({
   url,
 }) => {
   const { resetPasswordHtml, resetPasswordText } = await import(
-    "./templates/reset-password.js"
+    "../../../emails/reset-password.js"
   );
   void transporter.sendMail({
     from: "BetterAuth Organization <support@betterauth-org.com",
@@ -29,7 +29,7 @@ export const sendVerificationEmail: SendVerificationEmailFunction = async ({
   url,
 }) => {
   const { emailVerificationHtml, emailVerificationText } = await import(
-    "./templates/email-verification.js"
+    "../../../emails/email-verification.js"
   );
   void transporter.sendMail({
     from: "BetterAuth Organization <support@betterauth-org.com",
@@ -45,7 +45,7 @@ type AfterEmailVerificaton = NonNullable<
 >["afterEmailVerification"];
 export const sendWelcomeEmail = async (name: string, email: string) => {
   const { welcomeMessageHtml, welcomeMessageText } = await import(
-    "./templates/welcome-message.js"
+    "../../../emails/welcome-message.js"
   );
   void transporter.sendMail({
     from: "BetterAuth Organization <support@betterauth-org.com",
@@ -63,8 +63,11 @@ export const afterEmailVerification: AfterEmailVerificaton = async ({ name, emai
 export const sendOTPEmail = async ({
   user: { name, email },
   otp,
-}: { user: { name: string; email: string }; otp: string }) => {
-  const { otpHtml, otpText } = await import("./templates/otp.js");
+}: {
+  user: { name: string; email: string };
+  otp: string;
+}) => {
+  const { otpHtml, otpText } = await import("../../../emails/otp.js");
   await transporter.sendMail({
     from: "BetterAuth Organization <support@betterauth-org.com",
     html: await otpHtml(name, otp, "5 minutes"),

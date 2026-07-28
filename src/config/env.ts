@@ -3,6 +3,7 @@ import { envEnum, envInteger, validateEnv } from "@/utils/validation.js";
 
 const envSchema = z.object({
   BETTER_AUTH_SECRET: z.string().min(32, "BETTER_AUTH_SECRET must be at least 32 characters"),
+  BETTER_AUTH_TRUSTED_ORIGINS: z.string().default(""),
   BETTER_AUTH_URL: z.string().default("http://localhost:3000"),
   DATABASE_URL: z.url({ error: "DATABASE_URL must be a valid URL" }).refine(
     (val) => {
