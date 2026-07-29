@@ -14,8 +14,8 @@ import { betterAuthPlugins } from "@/utils/better-auth/plugins.js";
 import { betterAuthSession } from "@/utils/better-auth/sessions.js";
 
 export const auth = betterAuth({
-  baseURL: env.BETTER_AUTH_URL,
   basePath: "/api/v1/auth",
+  baseURL: env.BETTER_AUTH_URL,
   database: drizzleAdapter(db, {
     provider: "pg",
     usePlural: true,
