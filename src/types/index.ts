@@ -6,7 +6,7 @@ export type AppBindings = {
   Variables: {
     logger: HonoPinoLogger;
     db: NeonHttpDatabase;
-    user: BetterAuth["user"] | null;
-    session: BetterAuth["session"] | null;
+    user: BetterAuth["user"];
+    session: BetterAuth["session"];
   };
 };

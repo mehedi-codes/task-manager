@@ -1,19 +1,6 @@
-import {
-  Body,
-  Button,
-  Container,
-  Head,
-  Heading,
-  Html,
-  Preview,
-  pixelBasedPreset,
-  pretty,
-  render,
-  Section,
-  Tailwind,
-  Text,
-  toPlainText,
-} from "react-email";
+import { Button, pretty, render, Text, toPlainText } from "react-email";
+
+import EmailLayout from "./layout.js";
 
 type VerifyEmailProps = {
   name: string;
@@ -22,56 +9,29 @@ type VerifyEmailProps = {
 };
 
 const VerifyEmail = ({ name, link, expireTime }: VerifyEmailProps) => (
-  <Html lang="en" dir="ltr">
-    <Tailwind
-      config={{
-        presets: [pixelBasedPreset],
-      }}
+  <EmailLayout preview="Verify your email address">
+    <Text className="text-[16px] m-0 leading-[24px]">Hi {name},</Text>
+
+    <Text className="text-[16px] m-0 mt-[16px] leading-[24px]">
+      Please click the button below to verify your email address and complete your Task Manager
+      account setup.
+    </Text>
+
+    <Button
+      href={link}
+      className="bg-[#1c1c1e] text-white px-[32px] py-[14px] rounded-[8px] text-[16px] font-bold no-underline box-border inline-block mt-[24px]"
     >
-      <Head />
-      <Preview>Verify your email address</Preview>
-      <Body className="bg-white font-sans py-[40px]">
-        <Container className="bg-gray-100 mx-auto p-[24px] w-full rounded-[12px]">
-          <Section className="mb-[24px]">
-            <Heading className="text-[28px] font-bold text-gray-900 m-0">
-              Verify your email address
-            </Heading>
-          </Section>
+      Verify Email
+    </Button>
 
-          <Section className="mb-[16px]">
-            <Text className="text-[16px] text-gray-700 m-0 leading-[24px]">Hi {name},</Text>
-          </Section>
+    <Text className="text-[14px] text-[#6e6e73] m-0 mt-[24px] leading-[20px]">
+      If you didn't create an account, you can safely ignore this email.
+    </Text>
 
-          <Section className="mb-[24px]">
-            <Text className="text-[16px] text-gray-700 m-0 leading-[24px]">
-              Please click the button below to verify your email address and complete your Task Manager account setup.
-            </Text>
-          </Section>
-
-          <Section className="mb-[24px]">
-            <Button
-              href={link}
-              className="bg-black text-white px-[32px] py-[14px] rounded-[8px] text-[16px] font-medium no-underline box-border inline-block"
-            >
-              Verify Email
-            </Button>
-          </Section>
-
-          <Section className="mb-[16px]">
-            <Text className="text-[14px] text-gray-600 m-0 leading-[20px]">
-              If you didn't create an account, you can safely ignore this email.
-            </Text>
-          </Section>
-
-          <Section>
-            <Text className="text-[14px] text-gray-600 m-0 leading-[20px]">
-              This verification link will expire in {expireTime}.
-            </Text>
-          </Section>
-        </Container>
-      </Body>
-    </Tailwind>
-  </Html>
+    <Text className="text-[14px] text-[#6e6e73] m-0 mt-[8px] leading-[20px]">
+      This verification link will expire in {expireTime}.
+    </Text>
+  </EmailLayout>
 );
 
 VerifyEmail.PreviewProps = {

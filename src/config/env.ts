@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { envEnum, envInteger, validateEnv } from "@/utils/validation.js";
+import { validateEnv, zEnum, zStringToInteger } from "@/utils/validation.js";
 
 const envSchema = z.object({
   BETTER_AUTH_SECRET: z.string().min(32, "BETTER_AUTH_SECRET must be at least 32 characters"),
@@ -14,9 +14,9 @@ const envSchema = z.object({
   ),
   GOOGLE_APP_PASS: z.string().default(""),
   GOOGLE_APP_USER: z.string().default(""),
-  LOG_LEVEL: envEnum(["fatal", "error", "warn", "info", "debug", "trace"], "info"),
-  NODE_ENV: envEnum(["development", "production", "test"], "development"),
-  PORT: envInteger("PORT", 3000),
+  LOG_LEVEL: zEnum(["fatal", "error", "warn", "info", "debug", "trace"], "info"),
+  NODE_ENV: zEnum(["development", "production", "test"], "development"),
+  PORT: zStringToInteger("PORT", 3000),
 });
 
 export const env = validateEnv(envSchema);

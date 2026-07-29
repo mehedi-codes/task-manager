@@ -1,14 +1,14 @@
 import type { ZodType } from "zod";
 import { z } from "zod";
 
-export const envInteger = (name: string, defaultValue: number) =>
+export const zStringToInteger = (name: string, defaultValue: number) =>
   z.coerce
     .number({ error: `Provide a valid ${name} number` })
     .int({ error: `${name} must be an integer` })
     .positive({ error: `${name} must be greater than 0` })
     .default(defaultValue);
 
-export const envEnum = <T extends [string, ...string[]]>(values: T, defaultValue: T[number]) =>
+export const zEnum = <T extends [string, ...string[]]>(values: T, defaultValue: T[number]) =>
   z.enum(values).default(defaultValue);
 
 const printErrorTree = (tree: Record<string, unknown>, path: string[] = []): void => {

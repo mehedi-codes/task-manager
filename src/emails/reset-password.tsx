@@ -1,19 +1,6 @@
-import {
-  Body,
-  Button,
-  Container,
-  Head,
-  Heading,
-  Html,
-  Preview,
-  pixelBasedPreset,
-  pretty,
-  render,
-  Section,
-  Tailwind,
-  Text,
-  toPlainText,
-} from "react-email";
+import { Button, pretty, render, Text, toPlainText } from "react-email";
+
+import EmailLayout from "./layout.js";
 
 type ResetPasswordProps = {
   name: string;
@@ -22,57 +9,29 @@ type ResetPasswordProps = {
 };
 
 const ResetPassword = ({ name, link, expireTime }: ResetPasswordProps) => (
-  <Html lang="en" dir="ltr">
-    <Tailwind
-      config={{
-        presets: [pixelBasedPreset],
-      }}
+  <EmailLayout preview="Reset your password">
+    <Text className="text-[16px] m-0 leading-[24px]">Hi {name},</Text>
+
+    <Text className="text-[16px] m-0 mt-[16px] leading-[24px]">
+      Someone requested a password reset for your Task Manager account. Click the button below to
+      set a new password.
+    </Text>
+
+    <Button
+      href={link}
+      className="bg-[#1c1c1e] text-white px-[32px] py-[14px] rounded-[8px] text-[16px] font-bold no-underline box-border inline-block mt-[24px]"
     >
-      <Head />
-      <Preview>Reset your password</Preview>
-      <Body className="bg-white font-sans py-[40px]">
-        <Container className="bg-gray-100 mx-auto p-[24px] w-full rounded-[12px]">
-          <Section className="mb-[24px]">
-            <Heading className="text-[28px] font-bold text-gray-900 m-0">
-              Reset your password
-            </Heading>
-          </Section>
+      Reset Password
+    </Button>
 
-          <Section className="mb-[16px]">
-            <Text className="text-[16px] text-gray-700 m-0 leading-[24px]">Hi {name},</Text>
-          </Section>
+    <Text className="text-[14px] text-[#6e6e73] m-0 mt-[24px] leading-[20px]">
+      If you didn't request this, you can safely ignore this email.
+    </Text>
 
-          <Section className="mb-[24px]">
-            <Text className="text-[16px] text-gray-700 m-0 leading-[24px]">
-              Someone requested a password reset for your Task Manager account. Click the button below to set a
-              new password.
-            </Text>
-          </Section>
-
-          <Section className="mb-[24px]">
-            <Button
-              href={link}
-              className="bg-black text-white px-[32px] py-[14px] rounded-[8px] text-[16px] font-medium no-underline box-border inline-block"
-            >
-              Reset Password
-            </Button>
-          </Section>
-
-          <Section className="mb-[16px]">
-            <Text className="text-[14px] text-gray-600 m-0 leading-[20px]">
-              If you didn't request this, you can safely ignore this email.
-            </Text>
-          </Section>
-
-          <Section>
-            <Text className="text-[14px] text-gray-600 m-0 leading-[20px]">
-              This reset link will expire in {expireTime}.
-            </Text>
-          </Section>
-        </Container>
-      </Body>
-    </Tailwind>
-  </Html>
+    <Text className="text-[14px] text-[#6e6e73] m-0 mt-[8px] leading-[20px]">
+      This reset link will expire in {expireTime}.
+    </Text>
+  </EmailLayout>
 );
 
 ResetPassword.PreviewProps = {

@@ -1,4 +1,5 @@
 import type { Hono } from "hono";
+import { taskRoutes } from "@/modules/task/task.api.js";
 import type { AppBindings } from "@/types/index.js";
 
 export const registerRoutes = (app: Hono<AppBindings>) => {
@@ -11,5 +12,6 @@ export const registerRoutes = (app: Hono<AppBindings>) => {
     })
     .get("/error", () => {
       throw new Error("This is a test error");
-    });
+    })
+    .route("/tasks", taskRoutes);
 };
