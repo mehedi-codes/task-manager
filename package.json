@@ -2,9 +2,12 @@
   "name": "task-manager",
   "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "dev": "bun run --watch --env-file=.env.development src/index.ts",
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
     "start": "node dist/index.js",
     "email:dev": "email dev --dir src/emails --port 3333",
     "email:build": "email build --dir src/emails",
@@ -50,6 +53,7 @@
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "drizzle-kit": "^1.0.0-rc.4",
+    "tsc-alias": "^1.9.1",
     "typescript": "^7.0.2"
   }
 }
