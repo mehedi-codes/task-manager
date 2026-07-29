@@ -14,8 +14,8 @@ services:
       - key: BETTER_AUTH_SECRET
         generateValue: true
       - key: BETTER_AUTH_URL
-        value: https://task-manager-z8qv.onrender.com
+        value: https://task-manager.mehedi.engineer
       - key: BETTER_AUTH_TRUSTED_ORIGINS
-        value: https://task-manager-z8qv.onrender.com
+        value: https://task-manager.mehedi.engineer
       - key: LOG_LEVEL
         value: info
