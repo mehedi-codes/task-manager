@@ -10,8 +10,8 @@ export const taskRoutes = createHono()
   .use("*", verifyAuth())
   .get("/", async (c) => {
     const user = c.var.user;
-    const tasks = await taskServices(c.var.db, user.id).getTasksByUserId();
-    return sendResponse(c, { data: tasks, message: "Tasks retrieved successfully" });
+    const data = await taskServices(c.var.db, user.id).getTasksByUserId();
+    return sendResponse(c, { data, message: "Tasks retrieved successfully" });
   })
   .post("/", verifyRequest("json", insertTaskSchema), async (c) => {
     const data = c.req.valid("json");
