@@ -3,7 +3,7 @@ services:
     name: task-manager
     runtime: node
     plan: free
-    buildCommand: npm install && npm run build
+    buildCommand: npm install --legacy-peer-deps && npm run build
     startCommand: npm start
     healthCheckPath: /health
     envVars:
@@ -14,8 +14,8 @@ services:
       - key: BETTER_AUTH_SECRET
         generateValue: true
       - key: BETTER_AUTH_URL
-        value: https://task-manager.onrender.com
+        value: https://task-manager-z8qv.onrender.com
       - key: BETTER_AUTH_TRUSTED_ORIGINS
-        value: https://task-manager.onrender.com
+        value: https://task-manager-z8qv.onrender.com
       - key: LOG_LEVEL
         value: info
