@@ -1,18 +1,11 @@
 {
   "version": "8",
   "dialect": "postgres",
-  "id": "fa2f00ef-d7ee-40d6-88f6-0def00fc8a9e",
-  "prevIds": [
-    "3ffaf1dd-f3e0-4723-a757-3541c5b35fed"
-  ],
+  "id": "7b7a1c37-08b8-4ec5-ac83-45e4920cc77c",
+  "prevIds": ["00000000-0000-0000-0000-000000000000"],
   "ddl": [
     {
-      "values": [
-        "new",
-        "in_progress",
-        "completed",
-        "cancelled"
-      ],
+      "values": ["new", "in_progress", "completed", "cancelled"],
       "name": "status",
       "entityType": "enums",
       "schema": "public"
@@ -857,14 +850,10 @@
     },
     {
       "nameExplicit": false,
-      "columns": [
-        "user_id"
-      ],
+      "columns": ["user_id"],
       "schemaTo": "public",
       "tableTo": "users",
-      "columnsTo": [
-        "id"
-      ],
+      "columnsTo": ["id"],
       "onUpdate": "NO ACTION",
       "onDelete": "CASCADE",
       "name": "accounts_user_id_users_id_fkey",
@@ -874,14 +863,10 @@
     },
     {
       "nameExplicit": false,
-      "columns": [
-        "user_id"
-      ],
+      "columns": ["user_id"],
       "schemaTo": "public",
       "tableTo": "users",
-      "columnsTo": [
-        "id"
-      ],
+      "columnsTo": ["id"],
       "onUpdate": "NO ACTION",
       "onDelete": "CASCADE",
       "name": "sessions_user_id_users_id_fkey",
@@ -891,14 +876,10 @@
     },
     {
       "nameExplicit": false,
-      "columns": [
-        "user_id"
-      ],
+      "columns": ["user_id"],
       "schemaTo": "public",
       "tableTo": "users",
-      "columnsTo": [
-        "id"
-      ],
+      "columnsTo": ["id"],
       "onUpdate": "NO ACTION",
       "onDelete": "CASCADE",
       "name": "two_factors_user_id_users_id_fkey",
@@ -908,14 +889,10 @@
     },
     {
       "nameExplicit": false,
-      "columns": [
-        "user_id"
-      ],
+      "columns": ["user_id"],
       "schemaTo": "public",
       "tableTo": "users",
-      "columnsTo": [
-        "id"
-      ],
+      "columnsTo": ["id"],
       "onUpdate": "NO ACTION",
       "onDelete": "CASCADE",
       "name": "tasks_user_id_users_id_fkey",
@@ -924,9 +901,7 @@
       "table": "tasks"
     },
     {
-      "columns": [
-        "id"
-      ],
+      "columns": ["id"],
       "nameExplicit": false,
       "name": "accounts_pkey",
       "schema": "public",
@@ -934,9 +909,7 @@
       "entityType": "pks"
     },
     {
-      "columns": [
-        "id"
-      ],
+      "columns": ["id"],
       "nameExplicit": false,
       "name": "sessions_pkey",
       "schema": "public",
@@ -944,9 +917,7 @@
       "entityType": "pks"
     },
     {
-      "columns": [
-        "id"
-      ],
+      "columns": ["id"],
       "nameExplicit": false,
       "name": "two_factors_pkey",
       "schema": "public",
@@ -954,9 +925,7 @@
       "entityType": "pks"
     },
     {
-      "columns": [
-        "id"
-      ],
+      "columns": ["id"],
       "nameExplicit": false,
       "name": "users_pkey",
       "schema": "public",
@@ -964,9 +933,7 @@
       "entityType": "pks"
     },
     {
-      "columns": [
-        "id"
-      ],
+      "columns": ["id"],
       "nameExplicit": false,
       "name": "verifications_pkey",
       "schema": "public",
@@ -974,9 +941,7 @@
       "entityType": "pks"
     },
     {
-      "columns": [
-        "id"
-      ],
+      "columns": ["id"],
       "nameExplicit": false,
       "name": "tasks_pkey",
       "schema": "public",
@@ -985,9 +950,7 @@
     },
     {
       "nameExplicit": false,
-      "columns": [
-        "token"
-      ],
+      "columns": ["token"],
       "nullsNotDistinct": false,
       "name": "sessions_token_key",
       "schema": "public",
@@ -996,9 +959,7 @@
     },
     {
       "nameExplicit": false,
-      "columns": [
-        "email"
-      ],
+      "columns": ["email"],
       "nullsNotDistinct": false,
       "name": "users_email_key",
       "schema": "public",

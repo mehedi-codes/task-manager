@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "bun --watch src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
     "email:dev": "email dev --dir src/emails --port 3333",
@@ -12,16 +11,19 @@
     "format": "bun biome format --write .",
     "lint": "bun biome lint .",
     "fix": "bun biome check --write .",
-    "db:push": "drizzle-kit push",
-    "db:generate": "drizzle-kit generate",
-    "db:auth": "better-auth generate -y --output src/modules/auth/auth.schema.ts --config src/config/auth.ts",
-    "db:seed": "bun run src/utils/seed-db.ts"
+    "dev": "bun run --hot --env-file=.env.development src/index.ts",
+    "db:push": "NODE_ENV=development bun --env-file=.env.development drizzle-kit push",
+    "db:generate": "NODE_ENV=development bun --env-file=.env.development drizzle-kit generate",
+    "db:seed": "NODE_ENV=development bun --env-file=.env.development src/utils/seed-db.ts",
+    "db:auth": "better-auth generate -y --output src/modules/auth/auth.schema.ts --config src/config/auth.ts"
   },
   "dependencies": {
     "@hono/node-server": "^2.0.12",
+    "@hono/zod-openapi": "^1.5.1",
     "@hono/zod-validator": "^0.9.0",
     "@neondatabase/serverless": "^1.1.0",
     "@node-rs/argon2": "^2.0.2",
+    "@scalar/hono-api-reference": "^0.11.11",
     "better-auth": "^1.6.25",
     "drizzle-orm": "^1.0.0-rc.4",
     "drizzle-seed": "^0.3.1",

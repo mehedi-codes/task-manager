@@ -1,13 +1,12 @@
-import type { Hono } from "hono";
+import type { OpenAPIHono } from "@hono/zod-openapi";
 import { auth } from "@/config/auth.js";
 import { taskRoutes } from "@/modules/task/task.api.js";
 import type { AppBindings } from "@/types/index.js";
+import { landingPage } from "@/views/landing-page.js";
 
-export const registerRoutes = (app: Hono<AppBindings>) => {
+export const registerRoutes = (app: OpenAPIHono<AppBindings>) => {
   return app
-    .get("/", (c) => {
-      return c.json({ message: "Task Manager REST API" });
-    })
+    .get("/", (c) => c.html(landingPage))
     .get("/health", (c) => {
       return c.json({ status: "ok" });
     })
