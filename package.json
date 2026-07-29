@@ -3,19 +3,21 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "dev": "bun run --watch --env-file=.env.development src/index.ts",
+    "build": "tsc -p tsconfig.build.json",
     "start": "node dist/index.js",
     "email:dev": "email dev --dir src/emails --port 3333",
     "email:build": "email build --dir src/emails",
     "email:export": "email export --outDir emails-out --pretty --plainText --dir src/emails",
     "format": "bun biome format --write .",
     "lint": "bun biome lint .",
+    "type-check": "tsc --noEmit",
     "fix": "bun biome check --write .",
-    "dev": "bun run --hot --env-file=.env.development src/index.ts",
-    "db:push": "NODE_ENV=development bun --env-file=.env.development drizzle-kit push",
-    "db:generate": "NODE_ENV=development bun --env-file=.env.development drizzle-kit generate",
-    "db:seed": "NODE_ENV=development bun --env-file=.env.development src/utils/seed-db.ts",
-    "db:auth": "better-auth generate -y --output src/modules/auth/auth.schema.ts --config src/config/auth.ts"
+    "db:push": "bun --env-file=.env.development drizzle-kit push",
+    "db:generate": "bun --env-file=.env.development drizzle-kit generate",
+    "db:seed": "bun --env-file=.env.development src/utils/seed-db.ts",
+    "db:studio": "bun --env-file=.env.development drizzle-kit studio",
+    "db:auth": "bun --env-file=.env.development better-auth generate -y --output src/modules/auth/auth.schema.ts --config src/config/auth.ts "
   },
   "dependencies": {
     "@hono/node-server": "^2.0.12",

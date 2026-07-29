@@ -1,6 +1,6 @@
 import { pretty, render, Text, toPlainText } from "react-email";
 
-import EmailLayout from "./layout.js";
+import EmailLayout from "./layout.tsx";
 
 type WelcomeUserProps = {
   name: string;

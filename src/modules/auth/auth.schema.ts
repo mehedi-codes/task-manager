@@ -1,5 +1,5 @@
 import { relations } from "drizzle-orm/_relations";
-import { boolean, index, integer, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { bigint, boolean, index, integer, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -95,6 +95,13 @@ export const twoFactors = pgTable(
     index("twoFactors_userId_idx").on(table.userId),
   ],
 );
+
+export const rateLimits = pgTable("rate_limits", {
+  count: integer("count").notNull(),
+  id: text("id").primaryKey(),
+  key: text("key").notNull().unique(),
+  lastRequest: bigint("last_request", { mode: "number" }).notNull(),
+});
 
 export const usersRelations = relations(users, ({ many }) => ({
   accounts: many(accounts),

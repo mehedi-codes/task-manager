@@ -2,6 +2,7 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { betterAuth } from "better-auth/minimal";
 import { db } from "@/config/db.js";
 import { env } from "@/config/env.js";
+import * as schema from "@/modules/auth/auth.schema.js";
 import {
   afterEmailVerification,
   sendResetPasswordEmail,
@@ -17,6 +18,7 @@ export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "pg",
     usePlural: true,
+    schema,
   }),
   hooks: betterAuthHooks,
   plugins: betterAuthPlugins,

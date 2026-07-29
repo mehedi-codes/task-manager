@@ -22,6 +22,17 @@ export const insertTaskSchema = createInsertSchema(tasks, {
 }).omit(taskOmitFields);
 
 export const selectTaskSchema = createSelectSchema(tasks);
+
+const statusMetaSchema = z.object({
+  status: z.enum(statusEnum),
+  total: z.number(),
+});
+
+export const taskListResponse = z.object({
+  meta: z.array(statusMetaSchema),
+  tasks: z.array(selectTaskSchema),
+});
+
 export const updateTaskSchema = createUpdateSchema(tasks).omit(taskOmitFields);
 
 export type SelectTask = z.infer<typeof selectTaskSchema>;
